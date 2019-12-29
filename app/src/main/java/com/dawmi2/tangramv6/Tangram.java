@@ -8,6 +8,8 @@ import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -187,7 +189,9 @@ public class Tangram extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 // probar con switch de colores y asignar la pieza correspondiente
-                View v2 = null;
+
+                piezaTangram1.setDrawingCacheEnabled(true);
+                Bitmap pieza = Bitmap.createBitmap(piezaTangram1.getDrawingCache());
                 final int evX = (int) event.getX();
                 final int evY = (int) event.getY();
                 int touchColor = muestraDeColor(v.getId(), evX, evY);
@@ -197,7 +201,7 @@ public class Tangram extends AppCompatActivity {
                 HerramientaColor ct = new HerramientaColor();
                 String colorMatch = "";
                 // EXTRAYENDO EL COLOR DONDE SE HA PULSADO, GUARDAMOS EL COLOR DE LA PIEZA ARRASTRADA
-                if (ct.compruebaMuestra(Color.GREEN, touchColor)){ colorViewClickada="GREEN"; v2 = piezaTangram1;}
+                if (ct.compruebaMuestra(Color.GREEN, touchColor)){ colorViewClickada="GREEN"; }
                 else if (ct.compruebaMuestra(Color.CYAN, touchColor)){ colorViewClickada="CYAN";}
                 else if (ct.compruebaMuestra(Color.RED, touchColor)){ colorViewClickada="RED";}
                 else if (ct.compruebaMuestra(Color.BLACK, touchColor)){ colorViewClickada="BLACK";}
@@ -211,7 +215,8 @@ public class Tangram extends AppCompatActivity {
                         new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN},
                         item);
                 // CUANDO SE PULSA LA PANTALLA PARA ARRASTRAR, SE MUESTRA UNA PIEZA MIENTRAS SE ARRASTRA
-                View.DragShadowBuilder piezaArrastrada = new CreadorDePiezaArrastrada(v2);
+                View.DragShadowBuilder piezaArrastrada = ImageDragShadowBuilder.fromBitmap(Tangram.this, pieza);
+
                 v.startDragAndDrop(dragData, piezaArrastrada, null, 0);
                 return true;
             }
@@ -377,6 +382,9 @@ public class Tangram extends AppCompatActivity {
                 Log.d ("ImageAreasActivity", "Hot spot bitmap was not created");
                 return 0;
             } else {
+                if (x>hotspots.getWidth()) { x = hotspots.getWidth() - 1;}
+                if (y>hotspots.getHeight()) { y = hotspots.getHeight() - 1;}
+
                 img.setDrawingCacheEnabled(false);
                 return hotspots.getPixel(x, y);
             }
