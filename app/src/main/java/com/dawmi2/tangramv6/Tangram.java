@@ -188,26 +188,52 @@ public class Tangram extends AppCompatActivity {
         tangramColores.setOnTouchListener (new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                // probar con switch de colores y asignar la pieza correspondiente
-
-                piezaTangram1.setDrawingCacheEnabled(true);
-                Bitmap pieza = Bitmap.createBitmap(piezaTangram1.getDrawingCache());
                 final int evX = (int) event.getX();
                 final int evY = (int) event.getY();
                 int touchColor = muestraDeColor(v.getId(), evX, evY);
+                Bitmap pieza = null;
 
                 // la herramientaColor compara la muestra de color obtenida de la imagen, con un test de color RGB (compruebaMuestra())
                 // el test de color contempla una tolerancia de 25, por las posibles variaciones de color causadas al escalar y variar la densidad de píxeles.
                 HerramientaColor ct = new HerramientaColor();
                 String colorMatch = "";
                 // EXTRAYENDO EL COLOR DONDE SE HA PULSADO, GUARDAMOS EL COLOR DE LA PIEZA ARRASTRADA
-                if (ct.compruebaMuestra(Color.GREEN, touchColor)){ colorViewClickada="GREEN"; }
-                else if (ct.compruebaMuestra(Color.CYAN, touchColor)){ colorViewClickada="CYAN";}
-                else if (ct.compruebaMuestra(Color.RED, touchColor)){ colorViewClickada="RED";}
-                else if (ct.compruebaMuestra(Color.BLACK, touchColor)){ colorViewClickada="BLACK";}
-                else if (ct.compruebaMuestra(Color.BLUE, touchColor)){ colorViewClickada="BLUE";}
-                else if (ct.compruebaMuestra(Color.MAGENTA, touchColor)){ colorViewClickada="MAGENTA";}
-                else if (ct.compruebaMuestra(Color.YELLOW, touchColor)){ colorViewClickada="YELLOW";}
+                if (ct.compruebaMuestra(Color.GREEN, touchColor)){
+                    colorViewClickada="GREEN";
+                    piezaTangram6.setDrawingCacheEnabled(true);
+                    pieza = Bitmap.createBitmap(piezaTangram6.getDrawingCache());
+                }
+                else if (ct.compruebaMuestra(Color.CYAN, touchColor)){
+                    colorViewClickada="CYAN";
+                    piezaTangram2.setDrawingCacheEnabled(true);
+                    pieza = Bitmap.createBitmap(piezaTangram2.getDrawingCache());}
+                else if (ct.compruebaMuestra(Color.RED, touchColor)){
+                    colorViewClickada="RED";
+                    piezaTangram3.setDrawingCacheEnabled(true);
+                    pieza = Bitmap.createBitmap(piezaTangram3.getDrawingCache());
+                }
+                else if (ct.compruebaMuestra(Color.BLACK, touchColor)){
+                    colorViewClickada="BLACK";
+                    piezaTangram4.setDrawingCacheEnabled(true);
+                    pieza = Bitmap.createBitmap(piezaTangram4.getDrawingCache());
+                }
+                else if (ct.compruebaMuestra(Color.BLUE, touchColor)){
+                    colorViewClickada="BLUE";
+                    piezaTangram5.setDrawingCacheEnabled(true);
+                    pieza = Bitmap.createBitmap(piezaTangram5.getDrawingCache());
+                }
+                else if (ct.compruebaMuestra(Color.MAGENTA, touchColor)){
+                    colorViewClickada="MAGENTA";
+                    piezaTangram1.setDrawingCacheEnabled(true);
+                    pieza = Bitmap.createBitmap(piezaTangram1.getDrawingCache());
+                }
+                else if (ct.compruebaMuestra(Color.YELLOW, touchColor)){
+                    colorViewClickada="YELLOW";
+                    piezaTangram7.setDrawingCacheEnabled(true);
+                    pieza = Bitmap.createBitmap(piezaTangram7.getDrawingCache());
+                } else {
+                    return true;
+                }
 
                 ClipData.Item item = new ClipData.Item("Pieza soltada??");
                 ClipData dragData = new ClipData(
