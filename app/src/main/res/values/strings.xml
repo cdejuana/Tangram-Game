@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TangramV5</string>
+    <string name="bt_comenzar">Comenzar juego</string>
+    <string name="tv_txt_figuras_completadas">Figuras\ncompletadas</string>
+    <string name="tv_n_figuras_completadas">0</string>
+    <string name="tv_ultima_figura">¡Has llegado al final del juego!</string>
+    <string name="tv_txt_puntos">Puntos</string>
+    <string name="tv_n_puntos">100</string>
+    <string name="tv_segundos">0 segundos</string>
+    <string name="tv_piezas_faltan">Faltan: 0 piezas</string>
+    <string name="tv_txt_nivel">Nivel</string>
+    <string name="tv_n_nivel">1</string>
+    <string name="bt_siguiente">siguiente figura</string>
+    <string name="tv_texto_figura">Casa</string>
+</resources>
