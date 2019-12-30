@@ -8,8 +8,6 @@ import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -23,7 +21,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Tangram extends AppCompatActivity {
+public class TangramActivity extends AppCompatActivity {
 
     // botones y textos
     private ImageButton ib_info;
@@ -49,6 +47,7 @@ public class Tangram extends AppCompatActivity {
     private int figurasCompletadas;
     private int puntuacion;
     private int nivel;
+    private ArrayList<String> listaPiezasColocadas =  new ArrayList<>();
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -159,7 +158,7 @@ public class Tangram extends AppCompatActivity {
         ib_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentInfo = new Intent(Tangram.this, Info.class);
+                Intent intentInfo = new Intent(TangramActivity.this, Info.class);
                 intentInfo.putExtra("PUNTUACION", puntuacion);
                 intentInfo.putExtra("NIVEL", nivel);
                 intentInfo.putExtra("COMPLETADAS", figurasCompletadas);
@@ -192,58 +191,91 @@ public class Tangram extends AppCompatActivity {
                 final int evY = (int) event.getY();
                 int touchColor = muestraDeColor(v.getId(), evX, evY);
                 Bitmap pieza = null;
+                boolean colocada = false;
 
                 // la herramientaColor compara la muestra de color obtenida de la imagen, con un test de color RGB (compruebaMuestra())
                 // el test de color contempla una tolerancia de 25, por las posibles variaciones de color causadas al escalar y variar la densidad de píxeles.
                 HerramientaColor ct = new HerramientaColor();
                 String colorMatch = "";
                 // EXTRAYENDO EL COLOR DONDE SE HA PULSADO, GUARDAMOS EL COLOR DE LA PIEZA ARRASTRADA
-                if (ct.compruebaMuestra(Color.GREEN, touchColor)){
-                    colorViewClickada="GREEN";
-                    piezaTangram6.setDrawingCacheEnabled(true);
-                    pieza = Bitmap.createBitmap(piezaTangram6.getDrawingCache());
+                if (ct.compruebaMuestra(Color.MAGENTA, touchColor)){
+                    colorViewClickada="MAGENTA";
+                    // si la pieza está ya colocada, no se ejecuta el código del evento onTouch (ni drag and drop, ver mas abajo)
+                    if (!listaPiezasColocadas.contains("MAGENTA")){
+                        piezaTangram1.setDrawingCacheEnabled(true);
+                        pieza = Bitmap.createBitmap(piezaTangram1.getDrawingCache());
+                    } else {
+                        colocada = true;
+                    }
                 }
                 else if (ct.compruebaMuestra(Color.CYAN, touchColor)){
                     colorViewClickada="CYAN";
-                    piezaTangram2.setDrawingCacheEnabled(true);
-                    pieza = Bitmap.createBitmap(piezaTangram2.getDrawingCache());}
+                    if (!listaPiezasColocadas.contains("CYAN")){
+                        piezaTangram2.setDrawingCacheEnabled(true);
+                        pieza = Bitmap.createBitmap(piezaTangram2.getDrawingCache());
+                    } else {
+                        colocada = true;
+                    }
+                }
                 else if (ct.compruebaMuestra(Color.RED, touchColor)){
                     colorViewClickada="RED";
-                    piezaTangram3.setDrawingCacheEnabled(true);
-                    pieza = Bitmap.createBitmap(piezaTangram3.getDrawingCache());
+                    if (!listaPiezasColocadas.contains("RED")){
+                        piezaTangram3.setDrawingCacheEnabled(true);
+                        pieza = Bitmap.createBitmap(piezaTangram3.getDrawingCache());
+                    } else {
+                        colocada = true;
+                    }
                 }
                 else if (ct.compruebaMuestra(Color.BLACK, touchColor)){
                     colorViewClickada="BLACK";
-                    piezaTangram4.setDrawingCacheEnabled(true);
-                    pieza = Bitmap.createBitmap(piezaTangram4.getDrawingCache());
+                    if (!listaPiezasColocadas.contains("BLACK")){
+                        piezaTangram4.setDrawingCacheEnabled(true);
+                        pieza = Bitmap.createBitmap(piezaTangram4.getDrawingCache());
+                    } else {
+                        colocada = true;
+                    }
                 }
                 else if (ct.compruebaMuestra(Color.BLUE, touchColor)){
                     colorViewClickada="BLUE";
-                    piezaTangram5.setDrawingCacheEnabled(true);
-                    pieza = Bitmap.createBitmap(piezaTangram5.getDrawingCache());
+                    if (!listaPiezasColocadas.contains("BLUE")){
+                        piezaTangram5.setDrawingCacheEnabled(true);
+                        pieza = Bitmap.createBitmap(piezaTangram5.getDrawingCache());
+                    } else {
+                        colocada = true;
+                    }
                 }
-                else if (ct.compruebaMuestra(Color.MAGENTA, touchColor)){
-                    colorViewClickada="MAGENTA";
-                    piezaTangram1.setDrawingCacheEnabled(true);
-                    pieza = Bitmap.createBitmap(piezaTangram1.getDrawingCache());
+                else if (ct.compruebaMuestra(Color.GREEN, touchColor)){
+                    colorViewClickada="GREEN";
+                    if (!listaPiezasColocadas.contains("GREEN")){
+                        piezaTangram6.setDrawingCacheEnabled(true);
+                        pieza = Bitmap.createBitmap(piezaTangram6.getDrawingCache());
+                    } else {
+                        colocada = true;
+                    }
                 }
                 else if (ct.compruebaMuestra(Color.YELLOW, touchColor)){
                     colorViewClickada="YELLOW";
-                    piezaTangram7.setDrawingCacheEnabled(true);
-                    pieza = Bitmap.createBitmap(piezaTangram7.getDrawingCache());
+                    if (!listaPiezasColocadas.contains("YELLOW")){
+                        piezaTangram7.setDrawingCacheEnabled(true);
+                        pieza = Bitmap.createBitmap(piezaTangram7.getDrawingCache());
+                    } else {
+                        colocada = true;
+                    }
                 } else {
                     return true;
                 }
+                // si la pieza está ya colocada, no se ejecuta el código del drag and drop
+                if (!colocada){
+                    ClipData.Item item = new ClipData.Item("Pieza soltada??");
+                    ClipData dragData = new ClipData(
+                            (CharSequence) v.getTag(),
+                            new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN},
+                            item);
+                    // CUANDO SE PULSA LA PANTALLA PARA ARRASTRAR, SE MUESTRA UNA PIEZA MIENTRAS SE ARRASTRA
+                    View.DragShadowBuilder piezaArrastrada = ImageDragShadowBuilder.fromBitmap(TangramActivity.this, pieza);
 
-                ClipData.Item item = new ClipData.Item("Pieza soltada??");
-                ClipData dragData = new ClipData(
-                        (CharSequence) v.getTag(),
-                        new String[] {ClipDescription.MIMETYPE_TEXT_PLAIN},
-                        item);
-                // CUANDO SE PULSA LA PANTALLA PARA ARRASTRAR, SE MUESTRA UNA PIEZA MIENTRAS SE ARRASTRA
-                View.DragShadowBuilder piezaArrastrada = ImageDragShadowBuilder.fromBitmap(Tangram.this, pieza);
-
-                v.startDragAndDrop(dragData, piezaArrastrada, null, 0);
+                    v.startDragAndDrop(dragData, piezaArrastrada, null, 0);
+                }
                 return true;
             }
         });
@@ -334,36 +366,43 @@ public class Tangram extends AppCompatActivity {
                     // COMPARAMOS EL COLOR DE LA PIEZA ARRASTRADA CON EL COLOR DE LA PIEZA OCULTA DONDE SE SUELTA
                     if(colorViewClickada == colorViewSoltada){
                         // SI ES CORRECTO...
-                        Toast.makeText(Tangram.this, "¡PIEZA COLOCADA CORRECTAMENTE!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TangramActivity.this, "¡PIEZA COLOCADA CORRECTAMENTE!", Toast.LENGTH_SHORT).show();
                         // Y DEPENDIENDO DEL COLOR, SE OCULA UNA PIEZA Y SE MUESTRA LA OTRA
                         switch (colorViewClickada) {
                             case "MAGENTA":
                                 piezaFigura1.setVisibility(View.VISIBLE);
                                 piezaTangram1.setVisibility(View.INVISIBLE);
+                                listaPiezasColocadas.add("MAGENTA");
                                 break;
                             case "CYAN":
                                 piezaFigura2.setVisibility(View.VISIBLE);
                                 piezaTangram2.setVisibility(View.INVISIBLE);
+                                listaPiezasColocadas.add("CYAN");
                                 break;
                             case "RED":
                                 piezaFigura3.setVisibility(View.VISIBLE);
                                 piezaTangram3.setVisibility(View.INVISIBLE);
+                                listaPiezasColocadas.add("RED");
                                 break;
                             case "BLACK":
                                 piezaFigura4.setVisibility(View.VISIBLE);
                                 piezaTangram4.setVisibility(View.INVISIBLE);
+                                listaPiezasColocadas.add("BLACK");
                                 break;
                             case "BLUE":
                                 piezaFigura5.setVisibility(View.VISIBLE);
                                 piezaTangram5.setVisibility(View.INVISIBLE);
+                                listaPiezasColocadas.add("BLUE");
                                 break;
                             case "GREEN":
                                 piezaFigura6.setVisibility(View.VISIBLE);
                                 piezaTangram6.setVisibility(View.INVISIBLE);
+                                listaPiezasColocadas.add("GREEN");
                                 break;
                             case "YELLOW":
                                 piezaFigura7.setVisibility(View.VISIBLE);
                                 piezaTangram7.setVisibility(View.INVISIBLE);
+                                listaPiezasColocadas.add("YELLOW");
                                 break;
                         }
                         // ACTUALIZAMOS PUNTUACIÓN ETC...
@@ -373,7 +412,7 @@ public class Tangram extends AppCompatActivity {
                         // SI LA FIGURA ESTÁ COMPLETA...
                         if (piezasColocadas == 7){
                             figurasCompletadas++;
-                            Toast.makeText(Tangram.this, "¡GENIAL! ¡HAS COMPLETADO LA FIGURA!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(TangramActivity.this, "¡GENIAL! ¡HAS COMPLETADO LA FIGURA!", Toast.LENGTH_LONG).show();
                             // SI NO ESTAMOS EN LA ÚLTIMA FIGURA...
                             if (indiceFiguras < listaFiguras.size()-1){
                                 // MOSTRAMOS BOTÓN DE SIGUIENTE
@@ -387,7 +426,7 @@ public class Tangram extends AppCompatActivity {
                         // SI NO ESTÁ COMPLETA, RESTAMOS PUNTOS...
                         puntuacion -= 10;
                         tv_puntuacion.setText(Integer.toString(puntuacion));
-                        Toast.makeText(Tangram.this, "ESE NO ES SU SITIO... ¡PRUEBA OTRA VEZ!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TangramActivity.this, "ESE NO ES SU SITIO... ¡PRUEBA OTRA VEZ!", Toast.LENGTH_SHORT).show();
                     }
                     return true;
             }
@@ -408,9 +447,16 @@ public class Tangram extends AppCompatActivity {
                 Log.d ("ImageAreasActivity", "Hot spot bitmap was not created");
                 return 0;
             } else {
-                if (x>hotspots.getWidth()) { x = hotspots.getWidth() - 1;}
-                if (y>hotspots.getHeight()) { y = hotspots.getHeight() - 1;}
-
+                if (x>hotspots.getWidth()){
+                    x = hotspots.getWidth() - 1;
+                } else if (x < 0){
+                    x = 0;
+                }
+                if (y>hotspots.getHeight()){
+                    y = hotspots.getHeight() - 1;
+                } else if (y < 0){
+                    y = 0;
+                }
                 img.setDrawingCacheEnabled(false);
                 return hotspots.getPixel(x, y);
             }
@@ -418,6 +464,7 @@ public class Tangram extends AppCompatActivity {
     }
 
     private void cambiarFigura() {
+        listaPiezasColocadas.clear();
         piezasColocadas = 0;
         puntuacion += 100;
         tv_puntuacion.setText(Integer.toString(puntuacion));

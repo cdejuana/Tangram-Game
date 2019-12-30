@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name="com.dawmi2.tangramv6.Instrucciones"></activity>
         <activity android:name="com.dawmi2.tangramv6.Info" />
-        <activity android:name="com.dawmi2.tangramv6.Tangram" />
+        <activity android:name="com.dawmi2.tangramv6.TangramActivity" />
         <activity android:name="com.dawmi2.tangramv6.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

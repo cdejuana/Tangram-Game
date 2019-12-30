@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         bt_comenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iComenzar = new Intent(MainActivity.this, Tangram.class);
+                Intent iComenzar = new Intent(MainActivity.this, TangramActivity.class);
                 startActivity(iComenzar);
             }
         });
