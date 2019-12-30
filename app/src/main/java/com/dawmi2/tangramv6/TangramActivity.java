@@ -51,10 +51,11 @@ public class TangramActivity extends AppCompatActivity {
     private ArrayList<String> listaPiezasColocadas =  new ArrayList<>();
 
     // sonidos
-    /*private MediaPlayer sonidoPiezaBien;
+    private MediaPlayer sonidoTap;
+    private MediaPlayer sonidoPiezaBien;
     private MediaPlayer sonidoPiezaMal;
     private MediaPlayer sonidoFiguraBien;
-    private MediaPlayer sonidoCambiaSiguiente;*/
+    private MediaPlayer sonidoCambiaSiguiente;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -104,10 +105,11 @@ public class TangramActivity extends AppCompatActivity {
         figuraColores = findViewById(R.id.iv_figura_colores);
 
         // SONIDOS
-        //sonidoPiezaBien = MediaPlayer.create(TangramActivity.this, R.raw.hero_simple_celebration_03);
-        //sonidoPiezaMal = MediaPlayer.create(TangramActivity.this, R.raw.alert_error_01);
-        //sonidoFiguraBien = MediaPlayer.create(TangramActivity.this, R.raw.hero_decorative_celebration_02);
-        //sonidoCambiaSiguiente = MediaPlayer.create(TangramActivity.this, R.raw.navigation_transition_left);
+        sonidoTap = MediaPlayer.create(TangramActivity.this, R.raw.ui_tap_variant_01);
+        sonidoPiezaBien = MediaPlayer.create(TangramActivity.this, R.raw.hero_simple_celebration_03);
+        sonidoPiezaMal = MediaPlayer.create(TangramActivity.this, R.raw.alert_error_01);
+        sonidoFiguraBien = MediaPlayer.create(TangramActivity.this, R.raw.hero_decorative_celebration_02);
+        sonidoCambiaSiguiente = MediaPlayer.create(TangramActivity.this, R.raw.navigation_forward_selection);
 
         // CREAMOS LOS OBJETOS DE LAS DIFERENTES FIGURAS
         // Y LOS AÑADIMOS A SU ARRAY:
@@ -199,6 +201,8 @@ public class TangramActivity extends AppCompatActivity {
         tangramColores.setOnTouchListener (new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                // SONIDO
+                sonidoTap.start();
                 final int evX = (int) event.getX();
                 final int evY = (int) event.getY();
                 int touchColor = muestraDeColor(v.getId(), evX, evY);
@@ -378,7 +382,7 @@ public class TangramActivity extends AppCompatActivity {
                     // COMPARAMOS EL COLOR DE LA PIEZA ARRASTRADA CON EL COLOR DE LA PIEZA OCULTA DONDE SE SUELTA
                     if(colorViewClickada == colorViewSoltada){
                         // SONIDO
-                        //sonidoPiezaBien.start();
+                        sonidoPiezaBien.start();
                         // SI ES CORRECTO...
                         Toast.makeText(TangramActivity.this, "¡PIEZA COLOCADA CORRECTAMENTE!", Toast.LENGTH_SHORT).show();
                         // Y DEPENDIENDO DEL COLOR, SE OCULA UNA PIEZA Y SE MUESTRA LA OTRA
@@ -426,7 +430,7 @@ public class TangramActivity extends AppCompatActivity {
                         // SI LA FIGURA ESTÁ COMPLETA...
                         if (piezasColocadas == 7){
                             // SONIDO
-                            //sonidoFiguraBien.start();
+                            sonidoFiguraBien.start();
                             figurasCompletadas++;
                             Toast.makeText(TangramActivity.this, "¡GENIAL! ¡HAS COMPLETADO LA FIGURA!", Toast.LENGTH_LONG).show();
                             // SI NO ESTAMOS EN LA ÚLTIMA FIGURA...
@@ -441,7 +445,7 @@ public class TangramActivity extends AppCompatActivity {
                     } else {
                         // SI NO COINCIDEN, RESTAMOS PUNTOS Y SUENA MAL...
                         // SONIDO
-                        //sonidoPiezaMal.start();
+                        sonidoPiezaMal.start();
                         puntuacion -= 10;
                         tv_puntuacion.setText(Integer.toString(puntuacion));
                         Toast.makeText(TangramActivity.this, "ESE NO ES SU SITIO... ¡PRUEBA OTRA VEZ!", Toast.LENGTH_SHORT).show();
@@ -483,7 +487,7 @@ public class TangramActivity extends AppCompatActivity {
 
     private void cambiarFigura() {
         // SONIDO
-        //sonidoCambiaSiguiente.start();
+        sonidoCambiaSiguiente.start();
         listaPiezasColocadas.clear();
         piezasColocadas = 0;
         puntuacion += 100;
