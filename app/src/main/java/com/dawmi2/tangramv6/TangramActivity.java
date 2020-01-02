@@ -23,6 +23,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class TangramActivity extends AppCompatActivity {
+    //prueba poligono
+    private ImageView poligono;
 
     // botones y textos
     private ImageButton ib_info;
@@ -62,6 +64,10 @@ public class TangramActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tangram);
+
+        //prueba poligono
+        ((ImageView) findViewById(R.id.triangle))
+                .setBackgroundDrawable(new PolygonalDrawable(Color.GREEN, 3));
 
         // incializamos contadores
         indiceFiguras = 0;
