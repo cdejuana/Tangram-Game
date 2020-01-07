@@ -19,7 +19,7 @@ public class PolygonalDrawable extends Drawable {
 
     public PolygonalDrawable(int color, int sides) {
         paint.setColor(color);
-        polygon.setFillType(Path.FillType.EVEN_ODD);
+        polygon.setFillType(Path.FillType.WINDING);
         this.numberOfSides = sides;
     }
 

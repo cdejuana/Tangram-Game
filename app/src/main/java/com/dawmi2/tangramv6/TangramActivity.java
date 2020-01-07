@@ -8,6 +8,7 @@ import android.content.ClipDescription;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Path;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,8 @@ import java.util.ArrayList;
 
 public class TangramActivity extends AppCompatActivity {
     //prueba poligono
-    private ImageView poligono;
+    //private ImageView poligono;
+    //private Path p1;
 
     // botones y textos
     private ImageButton ib_info;
@@ -66,8 +68,9 @@ public class TangramActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tangram);
 
         //prueba poligono
-        ((ImageView) findViewById(R.id.triangle))
-                .setBackgroundDrawable(new PolygonalDrawable(Color.GREEN, 3));
+        //poligono = findViewById(R.id.triangle);
+        //77poligono.setBackground(new PolygonalDrawable(Color.GREEN, 3));
+        //p1 = (Path) getResources().getDrawable(R.drawable.p1);
 
         // incializamos contadores
         indiceFiguras = 0;
