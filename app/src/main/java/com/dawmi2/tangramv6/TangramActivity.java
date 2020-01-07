@@ -499,7 +499,7 @@ public class TangramActivity extends AppCompatActivity {
         sonidoCambiaSiguiente.start();
         listaPiezasColocadas.clear();
         piezasColocadas = 0;
-        puntuacion += 100;
+        puntuacion += 50;
         tv_puntuacion.setText(Integer.toString(puntuacion));
         if (indiceFiguras == 2){
             nivel++;
