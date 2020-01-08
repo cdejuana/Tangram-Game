@@ -77,14 +77,14 @@ public class TangramActivity extends AppCompatActivity implements
 
         //prueba poligono
         //poligono = findViewById(R.id.triangle);
-        //77poligono.setBackground(new PolygonalDrawable(Color.GREEN, 3));
+        //poligono.setBackground(new PolygonalDrawable(Color.GREEN, 3));
         //p1 = (Path) getResources().getDrawable(R.drawable.p1);
 
         // incializamos contadores
         indiceFiguras = 0;
         piezasColocadas = 0;
         figurasCompletadas = 0;
-        puntuacion = 100;
+        puntuacion = 0;
         nivel = 1;
 
         //instanciamos detector de gestos
@@ -161,31 +161,54 @@ public class TangramActivity extends AppCompatActivity implements
                 R.drawable.fig_avion_p5300px,
                 R.drawable.fig_avion_p6300px,
                 R.drawable.fig_avion_p7300px));
-        // casa2
+        // vela
         listaFiguras.add(new Figura(
-                "Casa2",
-                R.drawable.ic_figcasasilueta,
-                R.drawable.ic_figcasacolores,
-                R.drawable.casa_pieza1300px,
-                R.drawable.casa_pieza2300px,
-                R.drawable.casa_pieza3300px,
-                R.drawable.casa_pieza4300px,
-                R.drawable.casa_pieza5300px,
-                R.drawable.casa_pieza6300px,
-                R.drawable.casa_pieza7300px));
-        // avion2
-        /*listaFiguras.add(new Figura(
-                "Avión2",
-                R.drawable.ic_figavionsilueta,
-                R.drawable.ic_figavioncolores,
-                R.drawable.fig_avion_p1300px,
-                R.drawable.fig_avion_p2300px,
-                R.drawable.fig_avion_p3300px,
-                R.drawable.fig_avion_p4300px,
-                R.drawable.fig_avion_p5300px,
-                R.drawable.fig_avion_p6300px,
-                R.drawable.fig_avion_p7300px));*/
-
+                "Vela",
+                R.drawable.ic_figvelasilueta,
+                R.drawable.ic_figvelacolores,
+                R.drawable.fig_vela_p1,
+                R.drawable.fig_vela_p2,
+                R.drawable.fig_vela_p3,
+                R.drawable.fig_vela_p4,
+                R.drawable.fig_vela_p5,
+                R.drawable.fig_vela_p6,
+                R.drawable.fig_vela_p7));
+        // helicoptero
+        listaFiguras.add(new Figura(
+                "Helicóptero",
+                R.drawable.ic_fighelicopsilueta,
+                R.drawable.ic_fighelicopcolores,
+                R.drawable.fig_helicoptero_p1,
+                R.drawable.fig_helicoptero_p2,
+                R.drawable.fig_helicoptero_p3,
+                R.drawable.fig_helicoptero_p4,
+                R.drawable.fig_helicoptero_p5,
+                R.drawable.fig_helicoptero_p6,
+                R.drawable.fig_helicoptero_p7));
+        // cohete
+        listaFiguras.add(new Figura(
+                "Cohete",
+                R.drawable.ic_figcohetesilueta,
+                R.drawable.ic_figcohetecolores,
+                R.drawable.fig_cohete_p1,
+                R.drawable.fig_cohete_p2,
+                R.drawable.fig_cohete_p3,
+                R.drawable.fig_cohete_p4,
+                R.drawable.fig_cohete_p5,
+                R.drawable.fig_cohete_p6,
+                R.drawable.fig_cohete_p7));
+        // barco
+        listaFiguras.add(new Figura(
+                "Barco",
+                R.drawable.ic_figbarcosilueta,
+                R.drawable.ic_figbarcocolores,
+                R.drawable.fig_barco_p1,
+                R.drawable.fig_barco_p2,
+                R.drawable.fig_barco_p3,
+                R.drawable.fig_barco_p4,
+                R.drawable.fig_barco_p5,
+                R.drawable.fig_barco_p6,
+                R.drawable.fig_barco_p7));
 
         //
         //PREPARAMOS ESCUCHADORES DE EVENTOS:
@@ -202,15 +225,6 @@ public class TangramActivity extends AppCompatActivity implements
                 startActivity(intentInfo);
             }
         });
-
-        //escuchador click boton SIGUIENTE
-        /*bt_siguienteFigura.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                indiceFiguras++;
-                cambiarFigura();
-            }
-        });*/
 
         //escuchador drag PIEZAS TANGRAM
         MiEscuchadorDrag escuchadorDrag = new MiEscuchadorDrag();
@@ -573,7 +587,7 @@ public class TangramActivity extends AppCompatActivity implements
         piezasColocadas = 0;
         puntuacion += 50;
         tv_puntuacion.setText(Integer.toString(puntuacion));
-        if (indiceFiguras == 2){
+        if (figurasCompletadas == 3){
             nivel++;
             tv_nivel.setText(Integer.toString(nivel));
         }

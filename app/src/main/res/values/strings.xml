@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TangramV5</string>
+    <string name="app_name">Tangram</string>
     <string name="bt_comenzar">Comenzar</string>
     <string name="tv_txt_figuras_completadas">Figuras\ncompletadas</string>
     <string name="tv_n_figuras_completadas">0</string>
@@ -14,7 +14,7 @@
     <string name="tv_texto_figura">Casa</string>
     <string name="tv_instrucciones_encabezado">Reglas</string>
     <string name="tv_instrucciones">
-        Al empezar el juego tienes 100 puntos. Toca y arrastra cada pieza al lugar donde crees que puede encajar. Cada pieza encaja en un solo hueco, aunque haya piezas del mismo tamaño.\n
+        Toca y arrastra cada pieza al lugar donde crees que puede encajar. Cada pieza encaja en un solo hueco, aunque haya piezas del mismo tamaño.\n
         \nSi sueltas la pieza en el lugar correcto ganas 10 puntos, si es incorrecto pierdes 10 puntos.\n
         \nAl completar una figura entera ganas 50 puntos, y cada 3 figuras completadas subes un nivel.
     </string>
