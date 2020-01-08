@@ -75,6 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="140dp"
         android:text="@string/bt_siguiente"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -356,5 +357,17 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_siguiente"
+        android:layout_width="209dp"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_siguiente"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.76" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

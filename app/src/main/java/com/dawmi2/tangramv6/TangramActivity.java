@@ -1,6 +1,7 @@
 package com.dawmi2.tangramv6;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 
 import android.annotation.SuppressLint;
 import android.content.ClipData;
@@ -13,6 +14,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +25,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class TangramActivity extends AppCompatActivity {
+public class TangramActivity extends AppCompatActivity implements
+        GestureDetector.OnGestureListener,
+        GestureDetector.OnDoubleTapListener {
     //prueba poligono
     //private ImageView poligono;
     //private Path p1;
@@ -34,6 +38,7 @@ public class TangramActivity extends AppCompatActivity {
     private TextView tv_puntuacion;
     private TextView tv_nivel;
     private TextView tv_ultimaFigura;
+    private TextView tv_siguienteFigura;
 
     // imagenes
     private ImageView piezaTangram1, piezaTangram2,piezaTangram3, piezaTangram4, piezaTangram5, piezaTangram6, piezaTangram7;
@@ -61,6 +66,9 @@ public class TangramActivity extends AppCompatActivity {
     private MediaPlayer sonidoFiguraBien;
     private MediaPlayer sonidoCambiaSiguiente;
 
+    // detector de gestos
+    private GestureDetectorCompat detectorGestos;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +87,21 @@ public class TangramActivity extends AppCompatActivity {
         puntuacion = 100;
         nivel = 1;
 
+        //instanciamos detector de gestos
+        detectorGestos = new GestureDetectorCompat(this, this);
+        detectorGestos.setOnDoubleTapListener(this);
+
         //inflamos botones y textos
         ib_info = findViewById(R.id.ib_info);
-        bt_siguienteFigura = findViewById(R.id.bt_siguiente);
-        bt_siguienteFigura.setVisibility(View.INVISIBLE);
+        //bt_siguienteFigura = findViewById(R.id.bt_siguiente);
+        //bt_siguienteFigura.setVisibility(View.INVISIBLE);
         textoFigura = findViewById(R.id.tv_texto_figura);
         tv_puntuacion = findViewById(R.id.tv_n_puntos2);
         tv_nivel = findViewById(R.id.tv_n_nivel2);
         tv_ultimaFigura = findViewById(R.id.tv_ultima_figura);
         tv_ultimaFigura.setVisibility(View.INVISIBLE);
+        tv_siguienteFigura = findViewById(R.id.tv_siguiente);
+        tv_siguienteFigura.setVisibility(View.INVISIBLE);
 
 
         // piezas tangram
@@ -190,13 +204,13 @@ public class TangramActivity extends AppCompatActivity {
         });
 
         //escuchador click boton SIGUIENTE
-        bt_siguienteFigura.setOnClickListener(new View.OnClickListener() {
+        /*bt_siguienteFigura.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 indiceFiguras++;
                 cambiarFigura();
             }
-        });
+        });*/
 
         //escuchador drag PIEZAS TANGRAM
         MiEscuchadorDrag escuchadorDrag = new MiEscuchadorDrag();
@@ -304,6 +318,63 @@ public class TangramActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        if (this.detectorGestos.onTouchEvent(event)) {
+            return true;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onSingleTapConfirmed(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTap(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDoubleTapEvent(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        if (piezasColocadas == 7){
+            indiceFiguras++;
+            cambiarFigura();
+        }
+        return false;
     }
 
     //QUÉ OCURRE CUANDO SE ARRASTRA UNA PIEZA
@@ -445,7 +516,8 @@ public class TangramActivity extends AppCompatActivity {
                             // SI NO ESTAMOS EN LA ÚLTIMA FIGURA...
                             if (indiceFiguras < listaFiguras.size()-1){
                                 // MOSTRAMOS BOTÓN DE SIGUIENTE
-                                bt_siguienteFigura.setVisibility(View.VISIBLE);
+                                tv_siguienteFigura.setVisibility(View.VISIBLE);
+                                //bt_siguienteFigura.setVisibility(View.VISIBLE);
                             } else {
                                 // SI ESTAMOS EN LA ÚLTIMA... LO MOSTRAMOS
                                 tv_ultimaFigura.setVisibility(View.VISIBLE);
@@ -509,7 +581,8 @@ public class TangramActivity extends AppCompatActivity {
         textoFigura.setText(listaFiguras.get(indiceFiguras).getNombreFigura());
         figuraColores.setImageResource(listaFiguras.get(indiceFiguras).getFiguraColores());
         figuraSilueta.setImageResource(listaFiguras.get(indiceFiguras).getFiguraSilueta());
-        bt_siguienteFigura.setVisibility(View.INVISIBLE);
+        tv_siguienteFigura.setVisibility(View.INVISIBLE);
+        //bt_siguienteFigura.setVisibility(View.INVISIBLE);
 
         piezaFigura1.setVisibility(View.INVISIBLE);
         piezaFigura2.setVisibility(View.INVISIBLE);

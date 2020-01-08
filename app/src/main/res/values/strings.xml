@@ -19,4 +19,5 @@
         \nAl completar una figura entera ganas 50 puntos, y cada 3 figuras completadas subes un nivel.
     </string>
     <string name="bt_jugar">Jugar</string>
+    <string name="tv_siguiente">Desliza el dedo sobre la pantalla para pasar a la siguiente figura</string>
 </resources>
