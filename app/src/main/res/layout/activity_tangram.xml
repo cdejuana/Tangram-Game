@@ -370,4 +370,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.76" />
 
+    <com.dawmi2.tangramv6.VistaTangram
+        android:layout_width="350dp"
+        android:layout_height="550dp"
+        app:exampleString=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.68"/>
+
+    <!--android:background="#ccc"-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
