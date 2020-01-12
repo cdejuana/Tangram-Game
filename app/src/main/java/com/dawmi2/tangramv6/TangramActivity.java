@@ -29,9 +29,6 @@ import java.util.ArrayList;
 public class TangramActivity extends AppCompatActivity implements
         GestureDetector.OnGestureListener,
         GestureDetector.OnDoubleTapListener {
-    //prueba poligono
-    private ImageView poligono;
-    //private Drawable piezaD1;
 
     // botones y textos
     private ImageButton ib_info;
@@ -75,20 +72,6 @@ public class TangramActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tangram);
-
-        //prueba poligono
-        poligono = findViewById(R.id.triangle);
-        poligono.setBackground(new PiezaDrawable(Color.GREEN, 20));
-        //p1 = (Path) getResources().getDrawable(R.drawable.p1);
-
-        poligono.setOnTouchListener (new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Toast.makeText(TangramActivity.this, "FUNCIONA", Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            });
-
 
         // incializamos contadores
         indiceFiguras = 0;
