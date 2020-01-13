@@ -1,6 +1,13 @@
 package com.dawmi2.tangramv6;
 
-class Pieza {
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+class Pieza extends Drawable {
     private int pieza;
     private int posX;
     private int posY;
@@ -67,8 +74,28 @@ class Pieza {
         this.alto = alto;
     }
 
-    public boolean isVisible() {
+    @Override
+    public void draw(@NonNull Canvas canvas) {
+
+    }
+
+    @Override
+    public void setAlpha(int alpha) {
+
+    }
+
+    @Override
+    public void setColorFilter(@Nullable ColorFilter colorFilter) {
+
+    }
+
+/*    public boolean isVisible() {
         return visible;
+    }*/
+
+    @Override
+    public int getOpacity() {
+        return 0;
     }
 
     public void setVisible(boolean visible) {
