@@ -39,9 +39,10 @@ public class TangramActivity extends AppCompatActivity implements
     private TextView tv_siguienteFigura;
 
     // imagenes
-    private ImageView piezaTangram1, piezaTangram2,piezaTangram3, piezaTangram4, piezaTangram5, piezaTangram6, piezaTangram7;
+    private ImageView piezaTangram2,piezaTangram3, piezaTangram4, piezaTangram5, piezaTangram6, piezaTangram7;
     private ImageView piezaFigura1, piezaFigura2, piezaFigura3, piezaFigura4, piezaFigura5, piezaFigura6, piezaFigura7;
-    private ImageView tangramColores, figuraSilueta, figuraColores;
+    private ImageView figuraSilueta, figuraColores;
+    static ImageView tangramColores, piezaTangram1;
 
     // objetos
     private Figura figura1casa, figura2avion;
@@ -49,13 +50,13 @@ public class TangramActivity extends AppCompatActivity implements
 
     // variables funcionales, acumuladores y contadores
     private TextView textoFigura;
-    private String colorViewClickada, colorViewSoltada;
+    static String colorViewClickada, colorViewSoltada;
     private int indiceFiguras;
     private int piezasColocadas;
     private int figurasCompletadas;
     private int puntuacion;
     private int nivel;
-    private ArrayList<String> listaPiezasColocadas =  new ArrayList<>();
+    static ArrayList<String> listaPiezasColocadas =  new ArrayList<>();
 
     // sonidos
     private MediaPlayer sonidoTap;
