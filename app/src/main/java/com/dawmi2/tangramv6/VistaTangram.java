@@ -88,6 +88,14 @@ public class VistaTangram extends View {
         xPosicionPieza1, xPosicionPieza2, xPosicionPieza3, xPosicionPieza4, xPosicionPieza5,
         xPosicionPieza6, xPosicionPieza7;
 
+    // tamaños
+    private int anchoTangramColores;
+    private int altoTangramColores;
+    private int anchoFiguraSilueta;
+    private int altoFiguraSilueta;
+    private int anchoFiguraColores;
+    private int altoFiguraColores;
+
     // variables funcionales, acumuladores y contadores
     private TextView textoFigura;
     private String colorViewClickada, colorViewSoltada;
@@ -152,11 +160,19 @@ public class VistaTangram extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // guardar tamaño drawables
+        anchoTangramColores = tangramColores.getIntrinsicWidth()/2;
+        altoTangramColores = tangramColores.getIntrinsicHeight()/2;
 
         // establecer marco
+        tangramColores.setBounds(
+        posicionTangramColores.x - anchoTangramColores/2,
+        posicionTangramColores.y - altoTangramColores/2,
+        posicionTangramColores.x + anchoTangramColores/2,
+        posicionTangramColores.y + anchoTangramColores/2);
 
         //dibujar drawable
-
+        tangramColores.draw(canvas);
+        tangramColores.setVisible(false, false);
 
         //dibujo punto
 
