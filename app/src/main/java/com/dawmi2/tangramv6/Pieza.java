@@ -16,6 +16,7 @@ class Pieza extends Drawable {
     private boolean visible;
 
     public Pieza(Drawable pieza, int x, int y, int rotacion, int ancho, int alto, boolean visible) {
+        super();
         this.pieza = pieza;
         posicion = new Point(x,y);
         this.rotacion = rotacion;
