@@ -26,6 +26,7 @@ public class VistaTangram extends View {
     private float touchY;
     private int xPosicionPieza1;
     private int yPosicionPieza1;
+    static String colorViewClickada, colorViewSoltada;
 
     public VistaTangram(Context context) {
         super(context);
