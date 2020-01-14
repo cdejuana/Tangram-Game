@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 class Pieza extends Drawable {
-    private int pieza;
+    private Drawable imgPieza;
     private int posX;
     private int posY;
     private int rotacion;
@@ -16,8 +16,8 @@ class Pieza extends Drawable {
     private int alto;
     private boolean visible;
 
-    public Pieza(int pieza, int posX, int posY, int rotacion, int ancho, int alto, boolean visible) {
-        this.pieza = pieza;
+    public Pieza(Drawable imgPieza, int posX, int posY, int rotacion, int ancho, int alto, boolean visible) {
+        this.imgPieza = imgPieza;
         this.posX = posX;
         this.posY = posY;
         this.rotacion = rotacion;
@@ -26,12 +26,12 @@ class Pieza extends Drawable {
         this.visible = visible;
     }
 
-    public int getPieza() {
-        return pieza;
+    public Drawable getImgPieza() {
+        return imgPieza;
     }
 
-    public void setPieza(int pieza) {
-        this.pieza = pieza;
+    public void setImgPieza(Drawable imgPieza) {
+        this.imgPieza = imgPieza;
     }
 
     public int getPosX() {
