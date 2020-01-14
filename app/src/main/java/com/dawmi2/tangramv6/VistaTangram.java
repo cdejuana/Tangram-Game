@@ -65,8 +65,8 @@ public class VistaTangram extends View {
         anchoVista = getWidth();
         altoVista = getHeight();
 
-        xPosicionPieza1 = anchoVista/2;
-        yPosicionPieza1 = altoVista/2;
+        xPosicionPieza1 = anchoVista/6;
+        yPosicionPieza1 = (altoVista -= altoVista/3);
     }
 
     @Override
@@ -79,6 +79,7 @@ public class VistaTangram extends View {
         pieza1.setBounds(xPosicionPieza1 - anchoPieza1/2, yPosicionPieza1 - altoPieza1/2,
                 xPosicionPieza1 + anchoPieza1/2, yPosicionPieza1 + altoPieza1/2);
         //dibujar drawable
+
         pieza1.draw(canvas);
 
 
