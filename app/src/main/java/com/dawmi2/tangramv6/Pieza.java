@@ -8,46 +8,36 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 class Pieza extends Drawable {
-    private int pieza;
-    private int posX;
-    private int posY;
+    private Drawable pieza;
+    public Point posicion;
     private int rotacion;
     private int ancho;
     private int alto;
     private boolean visible;
 
-    public Pieza(int pieza, int posX, int posY, int rotacion, int ancho, int alto, boolean visible) {
+    public Pieza(Drawable pieza, int x, int y, int rotacion, int ancho, int alto, boolean visible) {
         this.pieza = pieza;
-        this.posX = posX;
-        this.posY = posY;
+        posicion = new Point(x,y);
         this.rotacion = rotacion;
         this.ancho = ancho;
         this.alto = alto;
         this.visible = visible;
     }
 
-    public int getPieza() {
+    public Drawable getPieza() {
         return pieza;
     }
 
-    public void setPieza(int pieza) {
+    public void setPieza(Drawable pieza) {
         this.pieza = pieza;
     }
 
-    public int getPosX() {
-        return posX;
+    public Point getPosicion() {
+        return posicion;
     }
 
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
+    public void setPosicion(Point posicion) {
+        this.posicion = posicion;
     }
 
     public int getRotacion() {

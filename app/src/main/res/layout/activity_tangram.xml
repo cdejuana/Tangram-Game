@@ -110,7 +110,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginBottom="16dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -202,29 +202,18 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/ib_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_info_outline_gray_24dp" />
-
     <ImageView
         android:id="@+id/iv_figura_silueta"
         android:layout_width="300dp"
         android:layout_height="273dp"
         android:layout_marginTop="40dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="spread_inside"
-        app:srcCompat="@drawable/ic_figcasasilueta"
-        tools:visibility="visible" />
+        app:srcCompat="@drawable/ic_figcasasilueta" />
 
     <ImageView
         android:id="@+id/iv_figura_pieza1"
@@ -330,7 +319,7 @@
         android:layout_height="273dp"
         android:layout_marginTop="40dp"
         android:alpha="0"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -362,12 +351,22 @@
 
     <com.dawmi2.tangramv6.VistaTangram
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="match_parent"
         app:exampleString=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.68" />
+
+    <ImageButton
+        android:id="@+id/ib_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_info_outline_gray_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

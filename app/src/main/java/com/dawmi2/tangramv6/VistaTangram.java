@@ -24,9 +24,16 @@ public class VistaTangram extends View {
     private static final String CLICKTAG = "CLICK";
     private float touchX;
     private float touchY;
+    static String colorViewClickada, colorViewSoltada;
+    //private Pieza pieza1;
+    private Drawable pieza1;
     private int xPosicionPieza1;
     private int yPosicionPieza1;
-    static String colorViewClickada, colorViewSoltada;
+    private int anchoPieza1;
+    private int altoPieza1;
+    private int anchoVista;
+    private int altoVista;
+
 
     public VistaTangram(Context context) {
         super(context);
@@ -45,6 +52,9 @@ public class VistaTangram extends View {
 
     private void init(AttributeSet attrs, int defStyle) {
         // sacar resources para drawables
+        pieza1 = getResources().getDrawable(R.drawable.p1);
+        //pieza1 = new Pieza(getResources().getDrawable(R.drawable.p1),
+                //0, 0, 0, 10, 10, false);
     }
 
     @Override
@@ -52,20 +62,26 @@ public class VistaTangram extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         // guardar tamaño vista y posición de drawables
+        anchoVista = getWidth();
+        altoVista = getHeight();
 
+        xPosicionPieza1 = anchoVista/2;
+        yPosicionPieza1 = altoVista/2;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         // guardar tamaño drawables
-
+        anchoPieza1 = 100;
+        altoPieza1 = 100;
         // establecer marco
-
+        pieza1.setBounds(xPosicionPieza1 - anchoPieza1/2, yPosicionPieza1 - altoPieza1/2,
+                xPosicionPieza1 + anchoPieza1/2, yPosicionPieza1 + altoPieza1/2);
         //dibujar drawable
+        pieza1.draw(canvas);
 
 
-        //dibujo punto
 
     }
 
@@ -87,8 +103,8 @@ public class VistaTangram extends View {
 
 
     protected void actualizarPosicionPieza() {
-        xPosicionPieza1 = (int) touchX;
-        yPosicionPieza1 = (int) touchY;
+        //xPosicionPieza1 = (int) touchX;
+        //yPosicionPieza1 = (int) touchY;
     }
 
 }
