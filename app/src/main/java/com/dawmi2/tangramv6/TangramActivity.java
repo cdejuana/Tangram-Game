@@ -68,6 +68,10 @@ public class TangramActivity extends AppCompatActivity implements
     // detector de gestos
     private GestureDetectorCompat detectorGestos;
 
+    //añadidos
+    private float touchX;
+    private float touchY;
+
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -331,6 +335,21 @@ public class TangramActivity extends AppCompatActivity implements
     @Override
     public boolean onTouchEvent(MotionEvent event){
         if (this.detectorGestos.onTouchEvent(event)) {
+           /* touchX = event.getX();
+            touchY = event.getY();
+
+            //coger accion del evento
+            int action = event.getAction();
+
+            //decidir que hacer segun lo que ocurra
+            switch (action) {
+                case (MotionEvent.ACTION_DOWN):
+                    //Toast.makeText(getContext(), R.id.iv_tangram_colores +"", Toast.LENGTH_SHORT).show();
+
+                    //gestionaClick();
+                    return true;
+            }*/
+
             return true;
         }
         return super.onTouchEvent(event);
