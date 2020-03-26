@@ -1,9 +1,9 @@
 # Tangram Game App
 
 ## Áreas
-•  Diseño de UX.
-•  Desarrollo front-end.
-•  Desarrollo de software.
+- Diseño de UX.
+- Desarrollo front-end.
+- Desarrollo de software.
 
 ## Proyecto
 Desarrollo de juego para dispositivos móviles con sistema operativo Android.
